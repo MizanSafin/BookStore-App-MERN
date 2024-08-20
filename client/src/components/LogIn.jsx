@@ -1,35 +1,35 @@
-import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useRef } from "react"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 function LogIn({ setRole }) {
-  const usernameRef = useRef();
-  const passwordRef = useRef();
-  const roleref = useRef();
-  const navigate = useNavigate();
-  axios.defaults.withCredentials = true;
+  const usernameRef = useRef()
+  const passwordRef = useRef()
+  const roleref = useRef()
+  const navigate = useNavigate()
+  axios.defaults.withCredentials = true
   const handleSubmit = () => {
-    let username = usernameRef.current.value;
-    let password = passwordRef.current.value;
-    let role = roleref.current.value;
-
+    let username = usernameRef.current.value
+    let password = passwordRef.current.value
+    let role = roleref.current.value
+    console.log(`password : ${password} , role: ${role}`)
     axios
       .post(
-        `http://localhost:4121/auth/login`,
+        `http://localhost:4142/auth/login`,
         { username, password, role },
         { withCredentials: true }
       )
       .then((res) => {
         if (res.data.success && res.data.role === "admin") {
-          navigate("/dashboard");
-          setRole("admin");
+          navigate("/dashboard")
+          setRole("admin")
         }
         if (res.data.success && res.data.role === "student") {
-          navigate("/");
-          setRole("student");
+          navigate("/")
+          setRole("student")
         }
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => console.log(err))
+  }
   return (
     <div className="flex w-screen  justify-center bg-fuchsia-950 items-center min-h-[350px] py-10">
       <div className="login-container text-slate-700 bg-green-600  h-full w-full max-w-[350px] py-5 px-7 rounded-lg">
@@ -75,7 +75,7 @@ function LogIn({ setRole }) {
         />
       </div>
     </div>
-  );
+  )
 }
 
-export default LogIn;
+export default LogIn

@@ -1,34 +1,34 @@
-import axios from "axios";
-import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import axios from "axios"
+import React, { useRef } from "react"
+import { useNavigate } from "react-router-dom"
 
 function AddStudent() {
-  const usernameRef = useRef();
-  const passwordRef = useRef();
-  const rollRef = useRef();
-  const gradeRef = useRef();
-  const navigate = useNavigate();
+  const usernameRef = useRef()
+  const passwordRef = useRef()
+  const rollRef = useRef()
+  const gradeRef = useRef()
+  const navigate = useNavigate()
 
-  axios.defaults.withCredentials = true;
+  axios.defaults.withCredentials = true
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const username = usernameRef.current.value;
-    const password = passwordRef.current.value;
-    const roll = rollRef.current.value;
-    const grade = gradeRef.current.value;
-    let student = { username, password, roll, grade };
+    e.preventDefault()
+    const username = usernameRef.current.value
+    const password = passwordRef.current.value
+    const roll = rollRef.current.value
+    const grade = gradeRef.current.value
+    let student = { username, password, roll, grade }
 
     axios
-      .post(`http://localhost:4121/student/register`, student, {
+      .post(`http://localhost:4142/student/register`, student, {
         withCredentials: true,
       })
       .then((res) => {
         if (res.data.success === true) {
-          navigate("/dashboard");
+          navigate("/dashboard")
         }
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => console.log(err))
+  }
   return (
     <div className="w-screen flex justify-center py-10 bg-fuchsia-950">
       <div className="form bg-slate-800 h-auto px-10 py-6 w-[450px] min-w-[340px]">
@@ -104,7 +104,7 @@ function AddStudent() {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default AddStudent;
+export default AddStudent

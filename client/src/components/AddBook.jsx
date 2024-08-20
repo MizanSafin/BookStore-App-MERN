@@ -1,33 +1,33 @@
-import axios from "axios";
-import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import axios from "axios"
+import React, { useRef } from "react"
+import { useNavigate } from "react-router-dom"
 
 function AddBook() {
-  const booknameRef = useRef();
-  const authorRef = useRef();
-  const imageUrlRef = useRef();
+  const booknameRef = useRef()
+  const authorRef = useRef()
+  const imageUrlRef = useRef()
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const name = booknameRef.current.value;
-    const author = authorRef.current.value;
-    const imageUrl = imageUrlRef.current.value;
+    e.preventDefault()
+    const name = booknameRef.current.value
+    const author = authorRef.current.value
+    const imageUrl = imageUrlRef.current.value
 
-    let book = { name, author, imageUrl };
+    let book = { name, author, imageUrl }
 
     axios
-      .post(`http://localhost:4121/book/add`, book, {
+      .post(`http://localhost:4142/book/add`, book, {
         withCredentials: true,
       })
       .then((res) => {
         if (res.data.success === true) {
-          navigate("/books");
+          navigate("/books")
         }
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => console.log(err))
+  }
   return (
     <div className="w-screen flex justify-center py-10 bg-fuchsia-950">
       <div className="form bg-slate-800 h-auto px-10 py-6 w-[450px] min-w-[340px]">
@@ -88,7 +88,7 @@ function AddBook() {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default AddBook;
+export default AddBook

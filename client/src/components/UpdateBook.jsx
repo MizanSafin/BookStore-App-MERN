@@ -1,36 +1,36 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios"
+import React, { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 
 function UpdateBook() {
-  const [name, setName] = useState("");
-  const [author, setAuthor] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const { id } = useParams();
-  const navigate = useNavigate();
+  const [name, setName] = useState("")
+  const [author, setAuthor] = useState("")
+  const [imageUrl, setImageUrl] = useState("")
+  const { id } = useParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios
       .get(`http://localhost:4121/book/getbook/${id}`)
       .then((res) => {
-        setName(res.data.book[0].name);
-        setAuthor(res.data.book[0].author);
-        setImageUrl(res.data.book[0].imageUrl);
+        setName(res.data.book[0].name)
+        setAuthor(res.data.book[0].author)
+        setImageUrl(res.data.book[0].imageUrl)
       })
-      .catch((err) => console.log(err));
-  }, []);
+      .catch((err) => console.log(err))
+  }, [])
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const book = { name, author, imageUrl };
+    e.preventDefault()
+    const book = { name, author, imageUrl }
     axios
-      .post(`http://localhost:4121/book/updatebook/${id}`, book)
+      .post(`http://localhost:4142/book/updatebook/${id}`, book)
       .then((res) => {
         if (res.data.success === true) {
-          navigate("/books");
+          navigate("/books")
         }
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => console.log(err))
+  }
   return (
     <div className="w-screen flex justify-center py-10 bg-fuchsia-950">
       <div className="form bg-slate-800 h-auto px-10 py-6 w-[450px] min-w-[340px] rounded-lg">
@@ -91,7 +91,7 @@ function UpdateBook() {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default UpdateBook;
+export default UpdateBook

@@ -1,22 +1,22 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import axios from "axios"
+import React, { useEffect, useState } from "react"
 
 function Dashboard() {
-  const [students, setStudents] = useState(0);
-  const [books, setBooks] = useState(0);
-  const [admin, setAdmin] = useState(0);
+  const [students, setStudents] = useState(0)
+  const [books, setBooks] = useState(0)
+  const [admin, setAdmin] = useState(0)
   useEffect(() => {
     axios
-      .get(`http://localhost:4121/api/v1/dashboard`)
+      .get(`http://localhost:4142/api/v1/dashboard`)
       .then((res) => {
         if (res.data.success === true) {
-          setStudents(res.data.students);
-          setAdmin(res.data.admin);
-          setBooks(res.data.books);
+          setStudents(res.data.students)
+          setAdmin(res.data.admin)
+          setBooks(res.data.books)
         }
       })
-      .catch((err) => console.log(err));
-  }, []);
+      .catch((err) => console.log(err))
+  }, [])
 
   return (
     <div className="bg-green-300 min-h-screen flex flex-col gap-5 pt-10 items-center">
@@ -33,7 +33,7 @@ function Dashboard() {
         <h4>{admin}</h4>
       </div>
     </div>
-  );
+  )
 }
 
-export default Dashboard;
+export default Dashboard

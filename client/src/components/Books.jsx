@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react"
+import axios from "axios"
+import { Link } from "react-router-dom"
 function Books({ role }) {
-  const [books, setBooks] = useState([]);
-
+  const [books, setBooks] = useState([])
+  console.log(`role : ${role}`)
+  axios.defaults.withCredentials = true
   useEffect(() => {
     axios
-      .get(`http://localhost:4121/book/getbooks`)
+      .get(`http://localhost:4142/book/getbooks`, { withCredentials: true })
       .then((res) => {
-        setBooks(res.data.books);
+        setBooks(res.data.books)
       })
-      .catch((err) => console.log(err));
-  }, []);
+      .catch((err) => console.log(err))
+  }, [])
 
   return (
     <div>
@@ -54,14 +55,14 @@ function Books({ role }) {
                   ""
                 )}
               </div>
-            );
+            )
           })}
         </div>
       ) : (
         <></>
       )}
     </div>
-  );
+  )
 }
 
-export default Books;
+export default Books

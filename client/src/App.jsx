@@ -1,31 +1,31 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import Navbar from "./components/Navbar";
-import Books from "./components/Books";
-import LogIn from "./components/LogIn";
-import Dashboard from "./components/Dashboard";
-import AddStudent from "./components/AddStudent";
-import { useEffect, useState } from "react";
-import LogOut from "./components/LogOut";
-import AddBook from "./components/AddBook";
-import axios from "axios";
-import UpdateBook from "./components/UpdateBook";
-import DeleteBook from "./components/DeleteBook";
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Home from "./components/Home"
+import Navbar from "./components/Navbar"
+import Books from "./components/Books"
+import LogIn from "./components/LogIn"
+import Dashboard from "./components/Dashboard"
+import AddStudent from "./components/AddStudent"
+import { useEffect, useState } from "react"
+import LogOut from "./components/LogOut"
+import AddBook from "./components/AddBook"
+import axios from "axios"
+import UpdateBook from "./components/UpdateBook"
+import DeleteBook from "./components/DeleteBook"
 
 function App() {
-  const [role, setRole] = useState("");
-  axios.defaults.withCredentials = true;
+  const [role, setRole] = useState("")
+  axios.defaults.withCredentials = true
   useEffect(() => {
     axios
-      .get("http://localhost:4121/auth/verify", { withCredentials: true })
+      .get("http://localhost:4142/auth/verify", { withCredentials: true })
       .then((res) => {
         if (res.data.login === true) {
-          return setRole(res.data.role);
+          return setRole(res.data.role)
         }
-        return setRole("");
+        return setRole("")
       })
-      .catch((err) => console.log(err));
-  }, []);
+      .catch((err) => console.log(err))
+  }, [])
   return (
     <>
       <BrowserRouter>
@@ -43,7 +43,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
